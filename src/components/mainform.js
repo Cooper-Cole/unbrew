@@ -5,6 +5,17 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 export default class MainForm extends React.Component {
+  
+  //potential save function
+  // constructor(props){
+  //   super(props)
+  //   this.onSave = this.onSave.bind(this)
+  // }
+  // onSave(values) {
+  //   this.props.onSaveBrew(values)
+      
+  // }
+
   render() {
     return (
       <React.Fragment>
