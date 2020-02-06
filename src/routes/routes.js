@@ -1,10 +1,6 @@
-const mysql = require('mysql');
-
-module.exports = function(app, connection) {
-    app.get('/', function(req, res) {
-        //res.send('Hello');
-        connection.query('SELECT * FROM user', function(err, data) {
-            (err)?res.send(err):res.json({users: data});
-        });
-    });
-};
+export const LANDING = '/';
+export const SIGN_UP = '/signup';
+export const SIGN_IN = '/signin';
+export const HOME = '/home';
+export const ACCOUNT = '/account';
+export const PASSWORD_FORGET = '/pw-forget';
