@@ -1,24 +1,31 @@
-const express = require('express');
-
 const mysql = require('mysql');
 
-const PORT  = process.env.PORT || 3000;
+class Connection {
+    constructor() {
+        this.con = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: 'password',
+            database: 'unbrew'
+        });
+    }
 
-const app = express();
+    test() {
+        console.log('CONNECTION');
+    }
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'unbrew'
-});
+    connect() {
+        this.con.connect(function(err) {
+            (err)?console.log(err):console.log('Connected!');
+        });
+    }
 
-connection.connect(function(err){
-    (err)? console.log(err): console.log(connection);
-});
+    query(sql) {
+        this.con.query(sql, function(err, res) {
+            (err)?console.log(err): console.log(res);
+        });
+    }
+}
 
-require('../routes/routes')(app, connection);
-
-app.listen(PORT, () => {
-    console.log('App running on port '+PORT+'');
-});
+//using this for now to test in VScode
+module.exports = Connection;
