@@ -6,16 +6,33 @@ import Button from '@material-ui/core/Button';
 
 export default class MainForm extends React.Component {
   
-  //potential save function
-  // constructor(props){
-  //   super(props)
-  //   this.onSave = this.onSave.bind(this)
-  // }
-  // onSave(values) {
-  //   this.props.onSaveBrew(values)
-      
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      coffeeName: "",
+      origin: "",
+      roaster: "",
+      brewMethod:"",
+      grindSize:"",
+      time:"",
+      water:"",
+      temperature:"",
+      steps:""
+    };
+  }
+
+  // _save = (e) => {
+  //   this.setState({coffeeName: e.target.value});
   // }
 
+  _save(e) {
+    console.log('saving')
+  }
+      
+componentDidMount() {
+    this._save();
+  }
+  
   render() {
     return (
       <React.Fragment>
@@ -101,7 +118,7 @@ export default class MainForm extends React.Component {
         />
         </Grid>
         <Grid item xs={12}>
-        <Button variant="contained" color="secondary" onClick={() => { alert("✔️ This works on every component!"); }} >
+        <Button variant="contained" color="secondary" onClick={(e) => { this._save(e)}} >
             Save
         </Button>
         </Grid>
