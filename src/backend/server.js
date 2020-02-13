@@ -1,4 +1,5 @@
 const express = require('express');
+const logger = require('morgan');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -11,6 +12,13 @@ const pool = mysql.createPool(dbConfig);
 const app = express();
 
 app.use(cors());
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+// app.use(express.urlencoded({ extended: false }));
 
 const info_columns = 'user_email, coffee_name, origin, roaster, brew, grind, time, water_amount, temperature, steps';
 
@@ -49,6 +57,26 @@ app.get('/account', function(req, res) { //change dir for corresponding page
     fetch(req, res);
     // add(req.res);
 });
+
+// let coffee = [];
+
+app.post('/account', function(req, res) {
+    
+    // console.log(req.body.coffee);
+    let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
+    let values = [
+        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', ''],
+        // ['jpjun8@gmail.com', 'TWO', 'japan', '', '', '', '', '', '', '']
+    ];
+    pool.getConnection(function(err, connection) {
+        connection.query(sql, [values], function(err, rows) {
+            connection.release();
+            if (err) throw err;
+            console.log(rows.length);
+            res.send(JSON.stringify(rows));
+        })        
+    })
+})
 
 app.get('/signin', function(req, res) {
     pool.getConnection(function(err, connection) {
