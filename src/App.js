@@ -4,6 +4,8 @@ import {
   Route,
 } from 'react-router-dom';
 
+// import ReactDOM from 'react-dom';
+
 // import MainForm from './components/mainform.js';
 
 import Navigation from './components/navigation';
@@ -17,6 +19,11 @@ import AccountPage from './components/account';
 import * as ROUTES from './routes/routes';
 
 export default class App extends React.Component{
+
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { posts: [] };
+  // }
 
   render () {
     return(
