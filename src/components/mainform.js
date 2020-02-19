@@ -3,13 +3,14 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 export default class MainForm extends React.Component {
   
   constructor(props, context) {
     super(props, context);
     this.state = {
-      coffeeName: "",
+      coffeeName: [],
       origin: "",
       roaster: "",
       brewMethod:"",
@@ -21,16 +22,25 @@ export default class MainForm extends React.Component {
     };
   }
 
-  // _save = (e) => {
+  // onSave = (e) => {
   //   this.setState({coffeeName: e.target.value});
   // }
 
-  _save(e) {
-    console.log('saving')
+  onSave(e) {
+    // e.preventDefault();
+    const coffee = {
+      coffeeName: this.state.coffeeName,
+    }
+    axios.post('http://localhost:9000/account', coffee)
+    .then(res => console.log(res.data));
   }
+
+  // onSave(e) {
+  //   console.log('saving')
+  // }
       
 componentDidMount() {
-    this._save();
+    this.onSave();
   }
   
   render() {
@@ -118,7 +128,7 @@ componentDidMount() {
         />
         </Grid>
         <Grid item xs={12}>
-        <Button variant="contained" color="secondary" onClick={(e) => { this._save(e)}} >
+        <Button variant="contained" color="secondary" onClick={(e) => { this.onSave(e)}} >
             Save
         </Button>
         </Grid>
