@@ -1,31 +1,107 @@
+const express = require('express');
+const logger = require('morgan');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const dbConfig = require('./dbConfig');
+// const connection = require('./connection');
+// const query = require('./query');
 
-class Connection {
-    constructor() {
-        this.con = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'password',
-            database: 'unbrew'
+const pool = mysql.createPool(dbConfig);
+
+const app = express();
+
+app.use(cors());
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+// app.use(express.urlencoded({ extended: false }));
+
+const info_columns = 'user_email, coffee_name, origin, roaster, brew, grind, time, water_amount, temperature, steps';
+
+// May need a function to connect + query to increase efficiency
+// function connect(sql, values) {
+//     pool.getConnection(function (err, connection) {
+//         connection.query(sql, [values], function(err, rows) {
+//             connection.release();
+//             res.send(JSON.stringify(rows));
+//         });
+//     })
+// }
+
+// Get data from MySQL, change SQL statement accordingly.
+function fetch(req, res) {
+    pool.getConnection(function (err, connection) {
+        //async await may be needed but using pool is fine for now.
+        connection.query("SELECT * FROM user", function (err, rows) {
+            connection.release(); //Must release
+            if (err) throw err;
+            console.log(rows.length);
+            res.send(JSON.stringify(rows));
         });
-    }
-
-    test() {
-        console.log('CONNECTION');
-    }
-
-    connect() {
-        this.con.connect(function(err) {
-            (err)?console.log(err):console.log('Connected!');
-        });
-    }
-
-    query(sql) {
-        this.con.query(sql, function(err, res) {
-            (err)?console.log(err): console.log(res);
-        });
-    }
+        // const conn = await connection(dbConfig).catch(e => {});
+        // const results = await query(conn, 'SELECT * FROM user').catch(console.log);
+        // res.send(JSON.stringify(results));
+    });
 }
 
-//using this for now to test in VScode
-module.exports = Connection;
+function add(req, res) {
+    let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
+    let values = [
+        ['junj@wit.edu', 'coffee_name', 'korea', '', '', '', '', '', '', ''],
+        // ['jpjun8@gmail.com', 'TWO', 'japan', '', '', '', '', '', '', '']
+    ];
+    pool.getConnection(function(err, connection) {
+        connection.query(sql, [values], function(err, rows) {
+            connection.release();
+            if (err) throw err;
+            console.log(rows.length);
+            res.send(JSON.stringify(rows));
+        })        
+    })
+}
+
+// Get call to specific URL. i.e. http://localhost:9000/account
+// Change the '/account' to corresponding page to prevent redundant data retrieving
+app.get('/account', function(req, res) { //change dir for corresponding page
+    fetch(req, res);
+    // add(req.res);
+});
+
+// let coffee = [];
+
+// Post call to specific URL. i.e. http://localhost:9000/account
+// Change the '/account' to corresponding page to prevent redundant data posting
+// Change SQL statement to adjust what you want to do with each page
+app.post('/account', function(req, res) {
+    
+    // console.log(req.body.coffee);
+    let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
+    let values = [
+        // 1st column (email) is the primary key; it won't pass the values to DB unless the email exists.
+        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', ''], 
+    ];
+    pool.getConnection(function(err, connection) {
+        connection.query(sql, [values], function(err, rows) {
+            connection.release();
+            if (err) throw err;
+            console.log(JSON.stringify(rows));
+            res.send(JSON.stringify(rows));
+        })        
+    })
+})
+
+app.get('/signin', function(req, res) {
+    pool.getConnection(function(err, connection) {
+
+    })
+})
+
+//using port 9000
+//run "node server.js" in this dir first then npm start
+app.listen(9000, () => {
+    console.log('Go to http://localhost:9000 to see JSON result');
+});

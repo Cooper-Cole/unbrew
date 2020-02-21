@@ -4,6 +4,8 @@ import {
   Route,
 } from 'react-router-dom';
 
+// import ReactDOM from 'react-dom';
+
 // import MainForm from './components/mainform.js';
 
 import Navigation from './components/navigation';
@@ -35,9 +37,5 @@ export default class App extends React.Component{
         </div>
       </Router>
     )
-
-    // return(
-    //   <MainForm />
-    // )
   }
 }
