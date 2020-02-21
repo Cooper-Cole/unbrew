@@ -20,11 +20,6 @@ import * as ROUTES from './routes/routes';
 
 export default class App extends React.Component{
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { posts: [] };
-  // }
-
   render () {
     return(
       <Router>
@@ -42,9 +37,5 @@ export default class App extends React.Component{
         </div>
       </Router>
     )
-
-    // return(
-    //   <MainForm />
-    // )
   }
 }

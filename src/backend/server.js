@@ -22,6 +22,17 @@ app.use(bodyParser.urlencoded({
 
 const info_columns = 'user_email, coffee_name, origin, roaster, brew, grind, time, water_amount, temperature, steps';
 
+// May need a function to connect + query to increase efficiency
+// function connect(sql, values) {
+//     pool.getConnection(function (err, connection) {
+//         connection.query(sql, [values], function(err, rows) {
+//             connection.release();
+//             res.send(JSON.stringify(rows));
+//         });
+//     })
+// }
+
+// Get data from MySQL, change SQL statement accordingly.
 function fetch(req, res) {
     pool.getConnection(function (err, connection) {
         //async await may be needed but using pool is fine for now.
@@ -53,6 +64,8 @@ function add(req, res) {
     })
 }
 
+// Get call to specific URL. i.e. http://localhost:9000/account
+// Change the '/account' to corresponding page to prevent redundant data retrieving
 app.get('/account', function(req, res) { //change dir for corresponding page
     fetch(req, res);
     // add(req.res);
@@ -60,19 +73,22 @@ app.get('/account', function(req, res) { //change dir for corresponding page
 
 // let coffee = [];
 
+// Post call to specific URL. i.e. http://localhost:9000/account
+// Change the '/account' to corresponding page to prevent redundant data posting
+// Change SQL statement to adjust what you want to do with each page
 app.post('/account', function(req, res) {
     
     // console.log(req.body.coffee);
     let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
     let values = [
-        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', ''],
-        // ['jpjun8@gmail.com', 'TWO', 'japan', '', '', '', '', '', '', '']
+        // 1st column (email) is the primary key; it won't pass the values to DB unless the email exists.
+        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', ''], 
     ];
     pool.getConnection(function(err, connection) {
         connection.query(sql, [values], function(err, rows) {
             connection.release();
             if (err) throw err;
-            console.log(rows.length);
+            console.log(JSON.stringify(rows));
             res.send(JSON.stringify(rows));
         })        
     })

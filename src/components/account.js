@@ -9,11 +9,13 @@ export default class AccountPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            accountInfo: [],
+            // Can be array or simply string to use get/post calls
+            accountInfo: [], 
             coffeeName: ''
         };
     }
 
+    // Calling server.js (API)
     callAPI() {
         fetch("http://localhost:9000/account")
         .then(res => res.json())
@@ -25,12 +27,7 @@ export default class AccountPage extends React.Component {
         this.callAPI();
     }
 
-    // save() {
-    //     let val = document.getElementById('coffeeName').value;
-    //     // console.log(document.getElementById('coffeeName').value);
-    //     module.exports = val;
-    // }
-
+    // Handling value change according to input change; nothing to do with submission except value.
     handleInputChange = e => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -42,8 +39,11 @@ export default class AccountPage extends React.Component {
 
         const coffee  = this.state.coffeeName;
 
+        // Make it look like a JSON object
         const sendThis = { coffee }
 
+        // Use axios to use Post call
+        // Haven't tested Get call with axios yet
         axios
         .post('http://localhost:9000/account', sendThis)
         .then( () => console.log('Coffee Name Passed to Server'))
