@@ -1,31 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Nav, Navbar}from 'react-bootstrap';
 
 import * as ROUTES from '../routes/routes';
 
-const Navigation = () => (
-    <div>
-        <ul>
-            <li>
-                <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.LANDING}>Landing</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.HOME}>Home</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.PASSWORD_FORGET}>Password Forget</Link>
-            </li>
-        </ul>
-    </div>
-);
-
-export default Navigation;
+class Navigation extends React.Component {
+    render() {
+        const styleNav = {
+            width: "100%",
+            margin: "0 0 3em 0",
+            listStyle: "none",
+            backgroundColor: "#0000",
+            display: "block",
+		    padding: "8px 15px",
+		    textDecoration: "none",
+		    fontWeight: "bold",
+		    color: "#069",
+        };
+        return(
+            <Navbar style={styleNav} bg="light" variant="light">
+            <div className="styleNav"> </div>
+            <Navbar.Brand> Unbrew </Navbar.Brand>
+            <Nav.Item>
+              <Nav.Link exact href={ROUTES.HOME}>Home</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link exact href={ROUTES.SIGN_IN}>Sign In</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link exact href={ROUTES.ACCOUNT}>Account</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href={ROUTES.SIGN_UP}>Sign Up</Nav.Link>
+            </Nav.Item>
+        </Navbar>
+        );
+    }
+}
+  
+  export default Navigation;
