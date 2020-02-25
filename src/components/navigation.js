@@ -1,38 +1,32 @@
 import React from 'react';
-import { Nav, Navbar}from 'react-bootstrap';
-
 import * as ROUTES from '../routes/routes';
+import { Tab, Tabs, Paper } from '@material-ui/core';
 
 class Navigation extends React.Component {
     render() {
         const styleNav = {
-            width: "100%",
-            margin: "0 0 3em 0",
-            listStyle: "none",
             backgroundColor: "#0000",
-            display: "block",
-		    padding: "8px 15px",
-		    textDecoration: "none",
-		    fontWeight: "bold",
-		    color: "#069",
+		        textDecoration: "none",
+		        fontWeight: "bold",
+		        textColor: "#069",
         };
         return(
-            <Navbar style={styleNav} bg="light" variant="light">
-            <div className="styleNav"> </div>
-            <Navbar.Brand> Unbrew </Navbar.Brand>
-            <Nav.Item>
-              <Nav.Link exact href={ROUTES.HOME}>Home</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link exact href={ROUTES.SIGN_IN}>Sign In</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link exact href={ROUTES.ACCOUNT}>Account</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href={ROUTES.SIGN_UP}>Sign Up</Nav.Link>
-            </Nav.Item>
-        </Navbar>
+        <div className={styleNav}>
+          <Paper>
+          <Tabs
+            indicatorColor="secondary"
+            textColor="dark"
+            fontWeight="bold"
+            centered
+            variant="fullWidth"
+          >
+            <Tab Link exact href={ROUTES.HOME} label="Home" />
+            <Tab Link exact href={ROUTES.ACCOUNT} label="Account" />
+            <Tab Link exact href={ROUTES.SIGN_IN} label="Sign In" />
+            <Tab Link exact href={ROUTES.SIGN_UP} label="Sign Up" />
+          </Tabs>
+          </Paper>
+          </div>
         );
     }
 }
