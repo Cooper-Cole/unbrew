@@ -19,6 +19,7 @@ class Navigation extends React.Component {
             fontWeight="bold"
             centered
             variant="fullWidth"
+            backgroundColor= "#f3f5f7"
           >
             <Tab Link exact href={ROUTES.HOME} label="Home" />
             <Tab Link exact href={ROUTES.ACCOUNT} label="Account" />
