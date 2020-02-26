@@ -1,5 +1,7 @@
+import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBaZTDKBe848uL6_g4bkphI6xPSjLD5Lrs",
@@ -11,11 +13,27 @@ const firebaseConfig = {
     appId: "1:380675641256:web:ea684179eb591229f5579d"
 };
 
-export default class Firebase {
-    constructor() {
+export default class Firebase extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            firebaseinfo: [],
+        };
+
         firebase.initializeApp(firebaseConfig);
 
         this.auth = firebase.auth();
+    }
+
+    callAPI() {
+        fetch("http://localhost:9000/firebase")
+        .then(res => res.json())
+        .then(firebaseinfo => this.setState({ firebaseinfo }))
+        .catch(error => error);
+    }
+
+    componentDidMount() {
+        this.callAPI();
     }
 
     //sign up with email & pwd, insert to 'user'
@@ -34,4 +52,25 @@ export default class Firebase {
 
     //save updated pwd to 'user'
     doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
+
+    render() {
+        return(
+            <React.Fragment>
+                <ul>
+
+                {this.state.firebaseinfo.map(info =>
+                <li>
+                <p>apiKey: {info.apiKey}</p>
+                <p>authDomain: {info.authDomain}</p>
+                <p>databaseURL: {info.databaseURL}</p>
+                <p>projectId: {info.projectId}</p>
+                <p>storageBucket: {info.storageBucket}</p>
+                <p>messagingSenderId: {info.messagingSenderId}</p>
+                <p>appId: {info.appId}</p>
+                </li>)}
+                </ul>
+
+            </React.Fragment>
+        );
+    }
 }
