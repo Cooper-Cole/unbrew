@@ -33,10 +33,10 @@ const info_columns = 'user_email, coffee_name, origin, roaster, brew, grind, tim
 // }
 
 // Get data from MySQL, change SQL statement accordingly.
-function fetch(req, res) {
+function fetch(req, res, sql) {
     pool.getConnection(function (err, connection) {
         //async await may be needed but using pool is fine for now.
-        connection.query("SELECT * FROM user", function (err, rows) {
+        connection.query(sql, function (err, rows) {
             connection.release(); //Must release
             if (err) throw err;
             console.log(rows.length);
@@ -67,11 +67,9 @@ function add(req, res) {
 // Get call to specific URL. i.e. http://localhost:9000/account
 // Change the '/account' to corresponding page to prevent redundant data retrieving
 app.get('/account', function(req, res) { //change dir for corresponding page
-    fetch(req, res);
+    fetch(req, res, "SELECT * FROM user");
     // add(req.res);
 });
-
-// let coffee = [];
 
 // Post call to specific URL. i.e. http://localhost:9000/account
 // Change the '/account' to corresponding page to prevent redundant data posting
@@ -98,6 +96,38 @@ app.get('/signin', function(req, res) {
     pool.getConnection(function(err, connection) {
 
     })
+})
+
+app.post('/home', function(req, res) {
+
+    let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
+    let values = [
+        ['junj@wit.edu',
+        req.body.info.coffeeName,
+        req.body.info.origin,
+        req.body.info.roaster,
+        req.body.info.brewMethod,
+        req.body.info.grindSize,
+        req.body.info.time,
+        req.body.info.water,
+        req.body.info.temperature,
+        req.body.info.steps],
+    ];
+
+    pool.getConnection(function(err, connection) {
+        connection.query(sql, [values], function(err, rows) {
+            connection.release();
+            if(err) throw err;
+            console.log(JSON.stringify(rows));
+            res.send(JSON.stringify(rows));
+        })
+    })
+
+    // console.log(req.body.info.coffeeName);
+})
+
+app.get('/firebase-page', function(req, res) {
+    fetch(req, res, "SELECT * FROM firebaseinfo");
 })
 
 //using port 9000

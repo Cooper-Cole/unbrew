@@ -15,6 +15,7 @@ import SignInPage from './components/signin';
 import PasswordForgetPage from './components/passwordForget';
 import HomePage from './components/mainform.js';
 import AccountPage from './components/account';
+import FirebasePage from './components/Firebase/firebase-page';
 
 import * as ROUTES from './routes/routes';
 
@@ -34,6 +35,7 @@ export default class App extends React.Component{
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route path={ROUTES.HOME} component={HomePage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+          <Route path={ROUTES.FIREBASE} component={FirebasePage} />
         </div>
       </Router>
     )
