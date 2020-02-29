@@ -4,31 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
 import axios from 'axios';
-
-
-
-// const useStyles = makeStyles(theme => ({
-//   paper: {
-//     marginTop: theme.spacing(8),
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//   },
-
-
-  
-//   form: {
-//     width: '100%', // Fix IE 11 issue.
-//     marginTop: theme.spacing(3),
-//   },
-//   submit: {
-//     margin: theme.spacing(2, 0, 1),
-//   },
-// }));
 
 export default class MainForm extends React.Component {
   
@@ -76,30 +53,21 @@ export default class MainForm extends React.Component {
       });
     }
       
-  //     onSave(e) {
-  //         // e.preventDefault();
-  //         const coffee = {
-  //             coffeeName: this.state.coffeeName,
-  //           }
-  //           axios.post('http://localhost:9000/account', coffee)
-  //           .then(res => console.log(res.data));
-  //         }
-          
-  //         componentDidMount() {
-  //             this.onSave();
-  //           }
             
   render() {
-    
-    // const classes = useStyles();
-  
+
+    const stylePage = {
+      styleHead : {
+          marginLeft: "38%",
+          fontFamily: "Verdana",
+          fontWeight: "bold"
+      }
+    }
+
   return (
     <Container component="main" maxWidth="s">
       <CssBaseline />
-      {/* <div className={classes.paper}> */}
-        {/* <Avatar className={classes.avatar}>
-        </Avatar> */}
-        <Typography component="h1" variant="h5">
+        <Typography style={stylePage.styleHead} component="h1" variant="h5">
         Create a New Brew
         </Typography>
         <p> </p>
@@ -206,6 +174,7 @@ export default class MainForm extends React.Component {
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
+                multiline
                 fullWidth
                 name="steps"
                 label="Detailed Steps"
@@ -216,13 +185,12 @@ export default class MainForm extends React.Component {
               />
             </Grid>
           </Grid>
-          <Button size="lg" block
+          <p></p>
+          <Button  size="large"  block
             type="submit"
-            // fullWidth
+            fullWidth
             variant="contained"
             color="primary"
-            // className={classes.submit}
-            // onClick={(e) => { this.onSave(e)}}
             >
             Save
           </Button>
