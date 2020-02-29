@@ -58,9 +58,11 @@ export default class MainForm extends React.Component {
 
     const stylePage = {
       styleHead : {
-          marginLeft: "38%",
-          fontFamily: "Verdana",
-          fontWeight: "bold"
+        marginLeft: "37%",
+        fontFamily: "Verdana",
+        fontWeight: "bold",
+        paddingBottom: "2%",
+        paddingTop: "2%"
       }
     }
 

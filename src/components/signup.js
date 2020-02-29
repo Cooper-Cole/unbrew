@@ -83,7 +83,6 @@ export default function SignUpPage() {
           <Button
           style={stylePage.styleButton}
             type="submit"
-            // fullWidth
             variant="contained"
             color="primary">
             Sign Up
