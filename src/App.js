@@ -10,7 +10,7 @@ import {
 
 import Navigation from './components/navigation';
 import LandingPage from './components/landing';
-import SignUpPage from './components/signup.js';
+import SignUpPage from './components/signup';
 import SignInPage from './components/signin';
 import PasswordForgetPage from './components/passwordForget';
 import HomePage from './components/mainform.js';

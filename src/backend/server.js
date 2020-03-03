@@ -126,8 +126,23 @@ app.post('/home', function(req, res) {
     // console.log(req.body.info.coffeeName);
 })
 
-app.get('/firebase-page', function(req, res) {
-    fetch(req, res, "SELECT * FROM firebaseinfo");
+app.post('/signup', function(req, res) {
+    let sql = "INSERT INTO user (email, password) VALUES ?";
+    let values = [
+        [req.body.info.email,
+        req.body.info.password],
+    ];
+
+    pool.getConnection(function(err, connection) {
+        connection.query(sql, [values], function(err, rows) {
+            connection.release();
+            if(err) throw err;
+            console.log(JSON.stringify(rows));
+            res.send(JSON.stringify(rows));
+        })
+    })
+
+    
 })
 
 //using port 9000

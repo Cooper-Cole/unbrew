@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import app from 'firebase/app';
 import 'firebase/auth';
 
@@ -53,24 +53,4 @@ export default class Firebase {
     //save updated pwd to 'user'
     doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-    // render() {
-    //     return(
-    //         <React.Fragment>
-    //             <ul>
-
-    //             {this.state.firebaseinfo.map(info =>
-    //             <li>
-    //             <p>apiKey: {info.apiKey}</p>
-    //             <p>authDomain: {info.authDomain}</p>
-    //             <p>databaseURL: {info.databaseURL}</p>
-    //             <p>projectId: {info.projectId}</p>
-    //             <p>storageBucket: {info.storageBucket}</p>
-    //             <p>messagingSenderId: {info.messagingSenderId}</p>
-    //             <p>appId: {info.appId}</p>
-    //             </li>)}
-    //             </ul>
-
-    //         </React.Fragment>
-    //     );
-    // }
 }
