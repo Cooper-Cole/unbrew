@@ -6,14 +6,4 @@ const LandingPage = () => (
     </div>
 );
 
-class SignUpFormBase extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        
-    }
-}
-
 export default LandingPage;

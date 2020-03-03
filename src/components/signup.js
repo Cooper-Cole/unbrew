@@ -30,7 +30,7 @@ const stylePage = {
 
 const SignUpPage = () => (
   <div>
-    <SignUpForms />
+    <SignUpForm />
   </div>
 );
 
@@ -42,7 +42,7 @@ const INITIAL_STATE = {
   error: null,
 };
 
-class SignUpFormsBase extends React.Component {
+class SignUpFormBase extends React.Component {
   constructor(props) {
     super(props);
 
@@ -194,8 +194,8 @@ class SignUpFormsBase extends React.Component {
   }
 }
 
-const SignUpForms = withRouter(withFirebase(SignUpFormsBase));
+const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
 export default SignUpPage;
 
-export { SignUpForms };
+export { SignUpForm };
