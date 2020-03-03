@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase/app';
+import app from 'firebase/app';
 import 'firebase/auth';
 
 
@@ -13,28 +13,28 @@ const firebaseConfig = {
     appId: "1:380675641256:web:ea684179eb591229f5579d"
 };
 
-export default class Firebase extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            firebaseinfo: [],
-        };
+export default class Firebase {
+    constructor() {
+        // super(props);
+        // this.state = {
+        //     firebaseinfo: [],
+        // };
 
-        firebase.initializeApp(firebaseConfig);
+        app.initializeApp(firebaseConfig);
 
-        this.auth = firebase.auth();
+        this.auth = app.auth();
     }
 
-    callAPI() {
-        fetch("http://localhost:9000/firebase")
-        .then(res => res.json())
-        .then(firebaseinfo => this.setState({ firebaseinfo }))
-        .catch(error => error);
-    }
+    // callAPI() {
+    //     fetch("http://localhost:9000/firebase")
+    //     .then(res => res.json())
+    //     .then(firebaseinfo => this.setState({ firebaseinfo }))
+    //     .catch(error => error);
+    // }
 
-    componentDidMount() {
-        this.callAPI();
-    }
+    // componentDidMount() {
+    //     this.callAPI();
+    // }
 
     //sign up with email & pwd, insert to 'user'
     doCreateUserWithEmailAndPassword = (email, password) =>
@@ -53,24 +53,24 @@ export default class Firebase extends React.Component {
     //save updated pwd to 'user'
     doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-    render() {
-        return(
-            <React.Fragment>
-                <ul>
+    // render() {
+    //     return(
+    //         <React.Fragment>
+    //             <ul>
 
-                {this.state.firebaseinfo.map(info =>
-                <li>
-                <p>apiKey: {info.apiKey}</p>
-                <p>authDomain: {info.authDomain}</p>
-                <p>databaseURL: {info.databaseURL}</p>
-                <p>projectId: {info.projectId}</p>
-                <p>storageBucket: {info.storageBucket}</p>
-                <p>messagingSenderId: {info.messagingSenderId}</p>
-                <p>appId: {info.appId}</p>
-                </li>)}
-                </ul>
+    //             {this.state.firebaseinfo.map(info =>
+    //             <li>
+    //             <p>apiKey: {info.apiKey}</p>
+    //             <p>authDomain: {info.authDomain}</p>
+    //             <p>databaseURL: {info.databaseURL}</p>
+    //             <p>projectId: {info.projectId}</p>
+    //             <p>storageBucket: {info.storageBucket}</p>
+    //             <p>messagingSenderId: {info.messagingSenderId}</p>
+    //             <p>appId: {info.appId}</p>
+    //             </li>)}
+    //             </ul>
 
-            </React.Fragment>
-        );
-    }
+    //         </React.Fragment>
+    //     );
+    // }
 }
