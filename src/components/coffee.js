@@ -30,3 +30,10 @@ export default CoffeePage;
 
 /*
 Source: https://reactjsexample.com/a-simple-and-powerful-datatable-for-react/ */
+
+/* steps remaining:
+1. fix icon issue
+2. need to use a get request to pull data in from db
+3. test
+*/
+
