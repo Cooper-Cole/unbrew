@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 const stylePage = {
@@ -26,11 +25,10 @@ const stylePage = {
 export default function SignInPage() {
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div >
-        <Typography style={stylePage.styleHead} component="h1" variant="h5">
-        Join Unbrew ☕️
-        </Typography>
+        <h1 style={stylePage.styleHead} variant="h5">
+        Welcome ☕️
+        </h1>
         <p> </p>
           <Grid container spacing={2}>
             <Grid paddingTop="30%" item xs={12}>

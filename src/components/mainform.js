@@ -6,6 +6,13 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 export default class MainForm extends React.Component {
   
@@ -22,7 +29,11 @@ export default class MainForm extends React.Component {
           temperature:"",
           steps:""
         };
+
+        // const setMenu = React.setState('');
       }
+
+      
 
     onSave = e => {
       e.preventDefault();
@@ -52,31 +63,44 @@ export default class MainForm extends React.Component {
         [e.target.name]: e.target.value,
       });
     }
+
+    handleChange = (e) => {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+  
+    
       
             
   render() {
 
     const stylePage = {
       styleHead : {
-        marginLeft: "37%",
+        marginLeft: "3%",
         fontFamily: "Verdana",
         fontWeight: "bold",
         paddingBottom: "2%",
         paddingTop: "2%"
-      }
+      },
+      styleButton: {
+        marginTop: "5%",
+        marginLeft: "35%",
+        marginBottom: "5%"
+      },
     }
 
   return (
     <Container component="main" maxWidth="s">
       <CssBaseline />
-        <Typography style={stylePage.styleHead} component="h1" variant="h5">
+        <h1 style={stylePage.styleHead} component="h1" variant="h5">
         Create a New Brew
-        </Typography>
+        </h1>
         <p> </p>
 
           <form onSubmit={this.onSave}>
+          
 
-          <Grid container spacing={2}>
+
+          <Grid container spacing={2}>      
             <Grid item xs={12} sm={6}>
               <TextField
                 name="coffeeName"
@@ -113,30 +137,40 @@ export default class MainForm extends React.Component {
                 }
               />
             </Grid>
+           <Grid item xs={12} sm={6}>
+              <Select                 
+              onChange = {this.handleChange}
+              displayEmpty 
+              variant="outlined"
+              label="Brew Method"
+              fullWidth
+              >
+                <option hidden>Brew Method</option>
+                <MenuItem value="Aeropress">Aeropress</MenuItem>
+                <MenuItem value="French Press">French Press</MenuItem>
+                <MenuItem value="Chemex">Chemex</MenuItem>
+                <MenuItem value="Hario V60">Hario V60</MenuItem>
+                <MenuItem value="Kalita Wave">Kalita Wave</MenuItem>
+                <MenuItem value="Drip">Drip</MenuItem>
+                <MenuItem value="Espresso">Espresso</MenuItem>
+        </Select>
+             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                name="brewMethod"
-                label="Brew Method"
-                id="brewMethod"
-                onChange = {
-                  this.handleInputChange
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                name="grindSize"
-                label="Grind Size"
-                id="grindSize"
-                onChange = {
-                  this.handleInputChange
-                }
-              />
-            </Grid>
+              <Select                 
+              onChange = {this.handleChange}
+              displayEmpty 
+              variant="outlined"
+              id="grindSize"
+              name="grindSize"
+              fullWidth
+              >
+                <option hidden>Grind Size</option>
+                <MenuItem value="Fine">Fine</MenuItem>
+                <MenuItem value="Medium">Medium</MenuItem>
+                <MenuItem value="Coarse">Coarse</MenuItem>
+                <MenuItem value="Espresso">Espresso</MenuItem>
+        </Select>
+             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
@@ -168,6 +202,7 @@ export default class MainForm extends React.Component {
                 name="temperature"
                 label="Temperature"
                 id="temperature"
+                type="number"
                 onChange = {
                   this.handleInputChange
                 }
@@ -178,6 +213,7 @@ export default class MainForm extends React.Component {
                 variant="outlined"
                 multiline
                 fullWidth
+                rows="6"
                 name="steps"
                 label="Detailed Steps"
                 id="steps"
@@ -196,16 +232,7 @@ export default class MainForm extends React.Component {
             >
             Save
           </Button>
-
           </form>
-
-          <Grid container justify="center">
-            <Grid item>
-              {/* <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link> */}
-            </Grid>
-          </Grid>
       {/* </div> */}
     </Container>
   );

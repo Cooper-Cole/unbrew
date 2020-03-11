@@ -74,9 +74,9 @@ export default class AccountPage extends React.Component {
             <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div >
-              <Typography style={stylePage.styleHead} component="h1" variant="h5">
+              <h1 style={stylePage.styleHead} component="h1" variant="h5">
               Account ☕
-              </Typography>
+              </h1>
               <p> </p>
                 <Grid container spacing={2}>
                   <Grid paddingTop="30%" item xs={12}>
