@@ -3,16 +3,10 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown'
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 
 export default class MainForm extends React.Component {
   
@@ -29,11 +23,7 @@ export default class MainForm extends React.Component {
           temperature:"",
           steps:""
         };
-
-        // const setMenu = React.setState('');
       }
-
-      
 
     onSave = e => {
       e.preventDefault();
@@ -67,14 +57,12 @@ export default class MainForm extends React.Component {
     handleChange = (e) => {
       this.setState({ [e.target.name]: e.target.value });
     }
-  
-    
       
             
   render() {
 
     const stylePage = {
-      styleHead : {
+      styleHead: {
         marginLeft: "3%",
         fontFamily: "Verdana",
         fontWeight: "bold",
@@ -95,11 +83,7 @@ export default class MainForm extends React.Component {
         Create a New Brew
         </h1>
         <p> </p>
-
-          <form onSubmit={this.onSave}>
-          
-
-
+          <form onSubmit={this.onSave}>  
           <Grid container spacing={2}>      
             <Grid item xs={12} sm={6}>
               <TextField
