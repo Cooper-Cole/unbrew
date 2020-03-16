@@ -58,6 +58,7 @@ class SignInFormBase extends React.Component {
     });
 
     event.preventDefault();
+
   };
 
   onChange = event => {

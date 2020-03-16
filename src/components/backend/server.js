@@ -6,6 +6,17 @@ const cors = require('cors');
 const dbConfig = require('./dbConfig');
 // const connection = require('./connection');
 // const query = require('./query');
+const firebase = require('firebase');
+
+let fb = firebase.initializeApp({
+    apiKey: "AIzaSyBaZTDKBe848uL6_g4bkphI6xPSjLD5Lrs",
+    authDomain: "unbrew-1cb9b.firebaseapp.com",
+    databaseURL: "https://unbrew-1cb9b.firebaseio.com",
+    projectId: "unbrew-1cb9b",
+    storageBucket: "unbrew-1cb9b.appspot.com",
+    messagingSenderId: "380675641256",
+    appId: "1:380675641256:web:ea684179eb591229f5579d"
+});
 
 const pool = mysql.createPool(dbConfig);
 
@@ -69,6 +80,7 @@ function add(req, res) {
 app.get('/account', function(req, res) { //change dir for corresponding page
     fetch(req, res, "SELECT * FROM user");
     // add(req.res);
+    console.log(firebase.auth().currentUser);
 });
 
 // Post call to specific URL. i.e. http://localhost:9000/account

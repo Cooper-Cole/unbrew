@@ -15,17 +15,37 @@ import SignInPage from './components/signin';
 import PasswordForgetPage from './components/passwordForget';
 import HomePage from './components/mainform.js';
 import AccountPage from './components/account';
-// import FirebasePage from './components/Firebase/firebase-page';
 
 import * as ROUTES from './routes/routes';
 
-export default class App extends React.Component{
+import { withFirebase } from './components/Firebase';
+
+class App extends React.Component{
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null,
+    };
+  }
+
+  componentDidMount() {
+    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+      ? this.setState({ authUser })
+      : this.setState({ authUser: null });
+    });
+  }
+
+  componentWillUnmount() {
+    this.listener();
+  }
 
   render () {
     return(
       <Router>
         <div>
-          <Navigation />
+          <Navigation authUser={this.state.authUser}/>
 
           <hr />
 
@@ -38,6 +58,8 @@ export default class App extends React.Component{
           {/* <Route path={ROUTES.FIREBASE} component={FirebasePage} /> */}
         </div>
       </Router>
-    )
+    );
   }
 }
+
+export default withFirebase(App);
