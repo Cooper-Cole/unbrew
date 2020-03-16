@@ -59,7 +59,6 @@ export default function SignInPage() {
           <Button
             style={stylePage.styleButton}
             type="submit"
-            // fullWidth
             variant="contained"
             color="primary"
             >
