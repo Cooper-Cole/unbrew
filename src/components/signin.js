@@ -111,7 +111,6 @@ class SignInFormBase extends React.Component {
           <Button
             style={stylePage.styleButton}
             type="submit"
-            // fullWidth
             variant="contained"
             color="primary"
             disabled={isInvalid}

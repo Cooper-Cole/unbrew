@@ -1,9 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-// import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class AccountPage extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ export default class AccountPage extends React.Component {
         this.state = {
             // Can be array or simply string to use get/post calls
             accountInfo: [], 
-            coffeeName: ''
+            coffeeName: '',
         };
     }
 
@@ -54,36 +56,70 @@ export default class AccountPage extends React.Component {
 
     render() {
         // console.log(this.state.accountInfo);
+        const stylePage = {
+            styleHead : {
+                marginLeft: "32%",
+                fontFamily: "Verdana",
+                fontWeight: "bold",
+                paddingBottom: "1%",
+                paddingTop: "1%"
+            },
+            styleButton: {
+              marginTop: "5%",
+              marginLeft: "35%",
+              marginBottom: "5%"
+            }
+          }
         return(
-
-            <React.Fragment>
-                <h1>Account</h1>
-                <ul>
-                {this.state.accountInfo.map(info => 
-                    <li>
-                        <p>Username: {info.email}</p>
-                        <p>Password: {info.password}</p>
-                    </li>)}
-                </ul>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                        <form onSubmit={this.handleSubmit}>
-                        <TextField
-                        required
-                        id="coffeeName"
-                        name="coffeeName"
-                        label="Coffee Name"
-                        fullWidth
-                        autoComplete="cofname"
-                        onChange={this.handleInputChange}
-                        />
-                        <Button variant="contained" color="secondary" type="submit" >
-                        Save
-                        </Button>
-                        </form>
-                    </Grid>
+            <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div >
+              <Typography style={stylePage.styleHead} component="h1" variant="h5">
+              Account ☕
+              </Typography>
+              <p> </p>
+                <Grid container spacing={2}>
+                  <Grid paddingTop="30%" item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      id="email"
+                      label={this.state.accountInfo.map(info => 
+                            info.email
+                            )}
+                      name="email"
+                      autoComplete="email"
+                      onChange={this.handleInputChange}
+                    />
+                  </Grid>
+                  <Grid padding="50%" item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="password"
+                      label={this.state.accountInfo.map(info => 
+                        info.password
+                        )}
+                      type="password"
+                      id="password"
+                      onChange={this.handleInputChange}
+                    />
+                  </Grid>
                 </Grid>
-            </React.Fragment>
+                <Button
+                  style={stylePage.styleButton}
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  >
+                  Save
+                </Button>
+                <Grid container justify="center">
+                </Grid>
+            </div>
+          </Container>
         );
     }
 };
