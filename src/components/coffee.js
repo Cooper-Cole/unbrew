@@ -31,6 +31,7 @@ export default function CoffeePage() {
           <TableCell >Temperature</TableCell>
           <TableCell >Time</TableCell>
           <TableCell >Detailed Steps</TableCell>
+          <TableCell >Detailed Steps</TableCell>
         </TableRow>         
       </TableHead> 
       <TableBody>
