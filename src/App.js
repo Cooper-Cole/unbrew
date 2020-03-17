@@ -15,11 +15,9 @@ import SignInPage from './components/signin';
 import PasswordForgetPage from './components/passwordForget';
 import HomePage from './components/mainform.js';
 import AccountPage from './components/account';
-<<<<<<< HEAD
-=======
+
 import CoffeePage from './components/coffee';
 import FirebasePage from './components/Firebase/firebase-page';
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
 
 import * as ROUTES from './routes/routes';
 
@@ -60,12 +58,8 @@ class App extends React.Component{
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route path={ROUTES.HOME} component={HomePage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-<<<<<<< HEAD
-          {/* <Route path={ROUTES.FIREBASE} component={FirebasePage} /> */}
-=======
           <Route path={ROUTES.FIREBASE} component={FirebasePage} />
           <Route path={ROUTES.COFFEE} component={CoffeePage} />
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
         </div>
       </Router>
     );

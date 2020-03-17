@@ -25,7 +25,6 @@ const stylePage = {
   }
 }
 
-<<<<<<< HEAD
 const SignInPage = () => (
   <div>
     <SignInForm />
@@ -70,13 +69,7 @@ class SignInFormBase extends React.Component {
 
     return (
 
-      <Container component="main" maxWidth="xs">
-      <CssBaseline />
-=======
-export default function SignInPage() {
-  return (
     <Container component="main" maxWidth="xs">
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
       <div >
         <h1 style={stylePage.styleHead} variant="h5">
         Welcome ☕️

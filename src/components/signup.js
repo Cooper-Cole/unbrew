@@ -8,19 +8,10 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 const stylePage = {
-<<<<<<< HEAD
-  styleHead: {
-    marginLeft: "25%",
-    fontFamily: "Verdana",
-    fontWeight: "bold",
-    paddingBottom: "5%",
-    paddingTop: "5%"
-=======
   styleHead : {
       marginLeft: "32%",
       fontFamily: "Verdana",
       fontWeight: "bold",
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
   },
   styleButton: {
     marginTop: "5%",
@@ -29,7 +20,6 @@ const stylePage = {
   }
 }
 
-<<<<<<< HEAD
 const SignUpPage = () => (
   <div>
     <SignUpForm />
@@ -106,29 +96,15 @@ class SignUpFormBase extends React.Component {
 
     return (
       <Container component="main" maxWidth="xs">
-      <CssBaseline />
-        {/* <Avatar className={classes.avatar}>
-        </Avatar> */}
         <Typography style={stylePage.styleHead} component="h1" variant="h5">
-=======
-export default function SignUpPage() {
-  return (
-    <Container component="main" maxWidth="sm">
-        <h2 style={stylePage.styleHead} component="h1" variant="h5">
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
         Join Unbrew ☕️
-        </h2>
+        </Typography>
         <p> </p>
-<<<<<<< HEAD
 
         <form onSubmit={this.onSubmit}>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-=======
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} >
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -190,7 +166,6 @@ export default function SignUpPage() {
             color="primary">
             Sign Up
           </Button>
-<<<<<<< HEAD
           {error && <p>{error.message}</p>}
 
           <Grid container justify="center">
@@ -202,10 +177,7 @@ export default function SignUpPage() {
           </Grid>
         
         </form>
-
-=======
->>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
-    </Container>
+      </Container>
 
     );
   }
