@@ -65,13 +65,12 @@ export default class AccountPage extends React.Component {
             },
             styleButton: {
               marginTop: "5%",
-              marginLeft: "35%",
+              // marginLeft: "25%",
               marginBottom: "5%"
             }
           }
         return(
             <Container component="main" maxWidth="xs">
-            <CssBaseline />
             <div >
               <h1 style={stylePage.styleHead} component="h1" variant="h5">
               Account ☕
@@ -109,6 +108,7 @@ export default class AccountPage extends React.Component {
                 </Grid>
                 <Button
                   style={stylePage.styleButton}
+                  fullWidth
                   type="submit"
                   variant="contained"
                   color="primary"

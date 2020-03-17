@@ -26,15 +26,12 @@ const stylePage = {
 export default function SignUpPage() {
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-        {/* <Avatar className={classes.avatar}>
-        </Avatar> */}
         <Typography style={stylePage.styleHead} component="h1" variant="h5">
         Join Unbrew ☕️
         </Typography>
         <p> </p>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item  sm={6}>
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -46,7 +43,7 @@ export default function SignUpPage() {
                 autoFocus
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -57,7 +54,7 @@ export default function SignUpPage() {
                 autoComplete="lname"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item s={12}>
               <TextField
                 variant="outlined"
                 required
@@ -68,7 +65,7 @@ export default function SignUpPage() {
                 autoComplete="email"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item s={12}>
               <TextField
                 variant="outlined"
                 required
@@ -87,13 +84,6 @@ export default function SignUpPage() {
             color="primary">
             Sign Up
           </Button>
-          <Grid container justify="center">
-            <Grid item>
-              <Link to exact href={ROUTES.SIGN_IN} label="Sign In" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
     </Container>
   );
 }
