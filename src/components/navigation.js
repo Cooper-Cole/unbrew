@@ -26,6 +26,7 @@ class Navigation extends React.Component {
             <Tab Link exact href={ROUTES.SIGN_IN} label="Sign In" />
             <Tab Link exact href={ROUTES.SIGN_UP} label="Sign Up" />
             <Tab Link exact href={ROUTES.PASSWORD_FORGET} label="Forgot Password" />
+            <Tab Link exact href={ROUTES.COFFEE} label="COFFEE" />
           </Tabs>
           </Paper>
           </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -74,9 +73,9 @@ export default class AccountPage extends React.Component {
             <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div >
-              <Typography style={stylePage.styleHead} component="h1" variant="h5">
+              <h1 style={stylePage.styleHead} component="h1" variant="h5">
               Account ☕
-              </Typography>
+              </h1>
               <p> </p>
                 <Grid container spacing={2}>
                   <Grid paddingTop="30%" item xs={12}>
