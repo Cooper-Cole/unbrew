@@ -58,7 +58,7 @@ class App extends React.Component{
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route path={ROUTES.HOME} component={HomePage} />
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-          <Route path={ROUTES.FIREBASE} component={FirebasePage} />
+          {/* <Route path={ROUTES.FIREBASE} component={FirebasePage} /> */}
           <Route path={ROUTES.COFFEE} component={CoffeePage} />
         </div>
       </Router>
