@@ -80,7 +80,7 @@ app.post('/account', function(req, res) {
     let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
     let values = [
         // 1st column (email) is the primary key; it won't pass the values to DB unless the email exists.
-        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', ''], 
+        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', '', '', ''], 
     ];
     pool.getConnection(function(err, connection) {
         connection.query(sql, [values], function(err, rows) {
@@ -111,6 +111,8 @@ app.post('/home', function(req, res) {
         req.body.info.time,
         req.body.info.water,
         req.body.info.temperature,
+        req.body.info.coffeeAmount,
+        req.body.info.rating,
         req.body.info.steps],
     ];
 

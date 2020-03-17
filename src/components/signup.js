@@ -1,37 +1,29 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import * as ROUTES from '../routes/routes';
+import { Container, Grid, TextField, Button } from '@material-ui/core';
+
 
 const stylePage = {
   styleHead : {
-      marginLeft: "25%",
+      marginLeft: "32%",
       fontFamily: "Verdana",
       fontWeight: "bold",
-      paddingBottom: "5%",
-      paddingTop: "5%"
   },
   styleButton: {
     marginTop: "5%",
-    marginLeft: "35%",
-    marginBottom: "5%"
+    marginBottom: "5%",
+    align: "center"
   }
 }
 
 export default function SignUpPage() {
   return (
-    <Container component="main" maxWidth="xs">
-        <Typography style={stylePage.styleHead} component="h1" variant="h5">
+    <Container component="main" maxWidth="sm">
+        <h2 style={stylePage.styleHead} component="h1" variant="h5">
         Join Unbrew ☕️
-        </Typography>
+        </h2>
         <p> </p>
-          <Grid container spacing={2}>
-            <Grid item  sm={6}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} >
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -43,7 +35,7 @@ export default function SignUpPage() {
                 autoFocus
               />
             </Grid>
-            <Grid item sm={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -54,7 +46,7 @@ export default function SignUpPage() {
                 autoComplete="lname"
               />
             </Grid>
-            <Grid item s={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -65,7 +57,7 @@ export default function SignUpPage() {
                 autoComplete="email"
               />
             </Grid>
-            <Grid item s={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -81,6 +73,7 @@ export default function SignUpPage() {
           style={stylePage.styleButton}
             type="submit"
             variant="contained"
+            fullWidth
             color="primary">
             Sign Up
           </Button>

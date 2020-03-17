@@ -6,20 +6,17 @@ const stylePage = {
       marginLeft: "30%",
       fontFamily: "Verdana",
       fontWeight: "bold",
-      // paddingBottom: "5%",
-      // paddingTop: "5%"
   }
 }
 
 export default function PasswordForget() {
   return (
     <Container style={stylePage.styleHead} component="main" maxWidth="xs">
-        <h1 maxWidth="m" variant="h1" align="center">
+        <h2 maxWidth="m" variant="h1" align="center">
         Forgot Password? 
-        </h1>
+        </h2>
         <p> </p>
           <Grid >
-            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -29,7 +26,6 @@ export default function PasswordForget() {
                 name="email"
                 autoComplete="email"
               />
-            </Grid>
           </Grid>
           <p></p>
           <Button

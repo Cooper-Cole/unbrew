@@ -1,12 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 import axios from 'axios';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import { Select, MenuItem, Container, Grid, TextField, Button} from '@material-ui/core';
 
 export default class MainForm extends React.Component {
   
@@ -17,10 +11,12 @@ export default class MainForm extends React.Component {
           origin: "",
           roaster: "",
           brewMethod:"",
+          coffeeAmount:"",
           grindSize:"",
           time:"",
           water:"",
           temperature:"",
+          rating:"",
           steps:""
         };
       }
@@ -33,10 +29,12 @@ export default class MainForm extends React.Component {
         origin: this.state.origin,
         roaster: this.state.roaster,
         brewMethod: this.state.brewMethod,
+        coffeeAmount: this.state.coffeeAmount,
         grindSize: this.state.grindSize,
         time: this.state.time,
         water: this.state.water,
         temperature: this.state.temperature,
+        rating: this.state.rating,
         steps: this.state.steps
       };
 
@@ -66,8 +64,6 @@ export default class MainForm extends React.Component {
         marginLeft: "33%",
         fontFamily: "Verdana",
         fontWeight: "bold",
-        // paddingBottom: "2%",
-        // paddingTop: "2%"
       },
       styleButton: {
         marginTop: "5%",
@@ -78,7 +74,6 @@ export default class MainForm extends React.Component {
 
   return (
     <Container component="main" maxWidth="s">
-      <CssBaseline />
         <h1 style={stylePage.styleHead} component="h1" variant="h5">
         Create a New Brew
         </h1>
@@ -139,6 +134,18 @@ export default class MainForm extends React.Component {
                 <MenuItem value="Espresso">Espresso</MenuItem>
         </Select>
              </Grid>
+             <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="coffeeAmount"
+                label="Amount of Coffee (ex: 17g)"
+                id="coffeeAmount"
+                onChange = {
+                  this.handleInputChange
+                }
+              />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <Select                 
               onChange = {this.handleChange}
@@ -186,6 +193,19 @@ export default class MainForm extends React.Component {
                 name="temperature"
                 label="Temperature"
                 id="temperature"
+                type="number"
+                onChange = {
+                  this.handleInputChange
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="rating"
+                label="Rate Your Coffee"
+                id="rating"
                 type="number"
                 onChange = {
                   this.handleInputChange
