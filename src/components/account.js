@@ -1,10 +1,6 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { Container, Button, TextField, Grid } from '@material-ui/core';
 
 export default class AccountPage extends React.Component {
     constructor(props) {
@@ -72,9 +68,9 @@ export default class AccountPage extends React.Component {
         return(
             <Container component="main" maxWidth="xs">
             <div >
-              <h1 style={stylePage.styleHead} component="h1" variant="h5">
+              <h2 style={stylePage.styleHead} component="h1" variant="h5">
               Account ☕
-              </h1>
+              </h2>
               <p> </p>
                 <Grid container spacing={2}>
                   <Grid paddingTop="30%" item xs={12}>

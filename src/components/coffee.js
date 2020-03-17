@@ -1,36 +1,38 @@
 import React from 'react';
 import { TableContainer, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 
-
-let customStyles = ({
-
-})
-
+//testing to see if table can properly get data
 function dataSource(name, origin, roaster, time, grindSize, temp, water, brewMethod, detailedSteps) {
   return {name, origin, roaster, time, grindSize, temp, water, brewMethod, detailedSteps};
 }
 
+//defining rows for data sources
 let rows = [
   dataSource('Good Coffee', 'Peru', 'Peet\'s', '2 minutes', 'fine', 90, '100g', 'AeroPress', 'press really hard'),
   dataSource('Great Coffee', 'Colombia', 'George Howell', '8 minutes', 'medium coarse', 200, '450g', 'French Press', 'do this and that')
 ]
 
+// defining style elements
+
+const styleTable = {
+  fontWeight: "bold"
+}
+
 export default function CoffeePage() {
-  //call styles if needed
 
   return(
     <TableContainer>
       <TableHead>
         <TableRow>
-          <TableCell> Coffee Name </TableCell>
-          <TableCell >Origin</TableCell>
-          <TableCell >Roaster</TableCell>
-          <TableCell >Brew Method</TableCell>
-          <TableCell >Grind Size</TableCell>
-          <TableCell >Water Amount</TableCell>
-          <TableCell >Temperature</TableCell>
-          <TableCell >Time</TableCell>
-          <TableCell >Detailed Steps</TableCell>
+          <TableCell style={styleTable}> Coffee Name </TableCell>
+          <TableCell style={styleTable}>Origin</TableCell>
+          <TableCell style={styleTable}>Roaster</TableCell>
+          <TableCell style={styleTable}>Brew Method</TableCell>
+          <TableCell style={styleTable}>Grind Size</TableCell>
+          <TableCell style={styleTable}>Water Amount</TableCell>
+          <TableCell style={styleTable}>Temperature</TableCell>
+          <TableCell style={styleTable}>Time</TableCell>
+          <TableCell style={styleTable}>Detailed Steps</TableCell>
         </TableRow>         
       </TableHead> 
       <TableBody>

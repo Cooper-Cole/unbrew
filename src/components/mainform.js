@@ -1,12 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 import axios from 'axios';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import { Select, MenuItem, Container, Grid, TextField, Button} from '@material-ui/core';
 
 export default class MainForm extends React.Component {
   
@@ -66,8 +60,6 @@ export default class MainForm extends React.Component {
         marginLeft: "33%",
         fontFamily: "Verdana",
         fontWeight: "bold",
-        // paddingBottom: "2%",
-        // paddingTop: "2%"
       },
       styleButton: {
         marginTop: "5%",
@@ -78,7 +70,6 @@ export default class MainForm extends React.Component {
 
   return (
     <Container component="main" maxWidth="s">
-      <CssBaseline />
         <h1 style={stylePage.styleHead} component="h1" variant="h5">
         Create a New Brew
         </h1>
