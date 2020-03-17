@@ -1,11 +1,9 @@
 import React from 'react';
 import * as ROUTES from '../routes/routes';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import { withFirebase } from './Firebase';
@@ -27,6 +25,7 @@ const stylePage = {
   }
 }
 
+<<<<<<< HEAD
 const SignInPage = () => (
   <div>
     <SignInForm />
@@ -73,10 +72,15 @@ class SignInFormBase extends React.Component {
 
       <Container component="main" maxWidth="xs">
       <CssBaseline />
+=======
+export default function SignInPage() {
+  return (
+    <Container component="main" maxWidth="xs">
+>>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
       <div >
-        <Typography style={stylePage.styleHead} component="h1" variant="h5">
-        Join Unbrew ☕️
-        </Typography>
+        <h1 style={stylePage.styleHead} variant="h5">
+        Welcome ☕️
+        </h1>
         <p> </p>
 
         <form onSubmit={this.onSubmit}>
@@ -122,8 +126,8 @@ class SignInFormBase extends React.Component {
 
           <Grid container justify="center">
             <Grid item>
-              <Link to exact href={ROUTES.SIGN_UP} label="Sign In" variant="body2">
-                Don't have an account? Sign up!
+              <Link to exact href={ROUTES.PASSWORD_FORGET} label="Forgot Password" variant="body3">
+                Click here to reset password.
               </Link>
             </Grid>
           </Grid>

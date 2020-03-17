@@ -1,12 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import * as ROUTES from '../routes/routes';
+import { Container, Grid, TextField, Button } from '@material-ui/core';
+
 
 import { withFirebase } from './Firebase';
 import { withRouter } from 'react-router-dom';
@@ -14,20 +8,28 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 const stylePage = {
+<<<<<<< HEAD
   styleHead: {
     marginLeft: "25%",
     fontFamily: "Verdana",
     fontWeight: "bold",
     paddingBottom: "5%",
     paddingTop: "5%"
+=======
+  styleHead : {
+      marginLeft: "32%",
+      fontFamily: "Verdana",
+      fontWeight: "bold",
+>>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
   },
   styleButton: {
     marginTop: "5%",
-    marginLeft: "35%",
-    marginBottom: "5%"
+    marginBottom: "5%",
+    align: "center"
   }
 }
 
+<<<<<<< HEAD
 const SignUpPage = () => (
   <div>
     <SignUpForm />
@@ -108,14 +110,25 @@ class SignUpFormBase extends React.Component {
         {/* <Avatar className={classes.avatar}>
         </Avatar> */}
         <Typography style={stylePage.styleHead} component="h1" variant="h5">
+=======
+export default function SignUpPage() {
+  return (
+    <Container component="main" maxWidth="sm">
+        <h2 style={stylePage.styleHead} component="h1" variant="h5">
+>>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
         Join Unbrew ☕️
-        </Typography>
+        </h2>
         <p> </p>
+<<<<<<< HEAD
 
         <form onSubmit={this.onSubmit}>
 
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
+=======
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} >
+>>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
               <TextField
                 autoComplete="fname"
                 name="firstName"
@@ -142,7 +155,7 @@ class SignUpFormBase extends React.Component {
                 value={lastName}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -155,7 +168,7 @@ class SignUpFormBase extends React.Component {
                 value={email}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -173,9 +186,11 @@ class SignUpFormBase extends React.Component {
             style={stylePage.styleButton}
             type="submit"
             variant="contained"
+            fullWidth
             color="primary">
             Sign Up
           </Button>
+<<<<<<< HEAD
           {error && <p>{error.message}</p>}
 
           <Grid container justify="center">
@@ -188,6 +203,8 @@ class SignUpFormBase extends React.Component {
         
         </form>
 
+=======
+>>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
     </Container>
 
     );

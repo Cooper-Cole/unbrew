@@ -2,6 +2,7 @@ import React from 'react';
 import * as ROUTES from '../routes/routes';
 import { Tab, Tabs, Paper } from '@material-ui/core';
 
+<<<<<<< HEAD
 import SignOutButton from './signout';
 // import { Link } from 'react-router-dom';
 
@@ -60,5 +61,30 @@ const NavigationNonAuth = () => (
 //         );
 //     }
 // }
+=======
+class Navigation extends React.Component {
+    render() {
+        return(
+        <div >
+          <Paper>
+          <Tabs
+            textColor="dark"
+            centered
+            variant="fullWidth"
+            backgroundColor= "rgba(0, 0, 0, 0.87)"
+          >
+            <Tab Link exact href={ROUTES.HOME} label="Home" />
+            <Tab Link exact href={ROUTES.ACCOUNT} label="Account" />
+            <Tab Link exact href={ROUTES.COFFEE} label="COFFEE" />
+            <Tab Link exact href={ROUTES.SIGN_IN} label="Sign In" />
+            <Tab Link exact href={ROUTES.SIGN_UP} label="Sign Up" />
+            <Tab Link exact href={ROUTES.PASSWORD_FORGET} label="Forgot Password" />
+          </Tabs>
+          </Paper>
+          </div>
+        );
+    }
+}
+>>>>>>> 39808df82bf1109e71faf857d6add2df438d9383
   
 export default Navigation;
