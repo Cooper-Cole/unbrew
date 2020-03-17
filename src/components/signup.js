@@ -2,6 +2,11 @@ import React from 'react';
 import { Container, Grid, TextField, Button } from '@material-ui/core';
 
 
+import { withFirebase } from './Firebase';
+import { withRouter } from 'react-router-dom';
+
+import axios from 'axios';
+
 const stylePage = {
   styleHead : {
       marginLeft: "32%",
@@ -15,13 +20,89 @@ const stylePage = {
   }
 }
 
-export default function SignUpPage() {
-  return (
-    <Container component="main" maxWidth="sm">
-        <h2 style={stylePage.styleHead} component="h1" variant="h5">
+const SignUpPage = () => (
+  <div>
+    <SignUpForm />
+  </div>
+);
+
+const INITIAL_STATE = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  error: null,
+};
+
+class SignUpFormBase extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...INITIAL_STATE};
+  }
+
+  onSubmit = event => {
+    const info = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    const {
+      firstName,
+      lastName,
+      email,
+      password
+    } = this.state;
+
+    //add user to Firebase Auth
+    this.props.firebase
+    .doCreateUserWithEmailAndPassword(email, password)
+    .then(authUser => {
+      this.setState({ ...INITIAL_STATE });
+      this.props.history.push(ROUTES.HOME);
+    })
+    .catch(error => {
+      this.setState({ error });
+    });
+
+    //save info to SQL
+    axios
+    .post('http://localhost:9000/signup', { info })
+    .then( () => console.log('User Info inserted to DB'))
+    .catch(error => {
+      console.error(error);
+    });
+
+    event.preventDefault();
+
+  };
+
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  render() {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      error,
+    } = this.state;
+
+    return (
+      <Container component="main" maxWidth="xs">
+        <Typography style={stylePage.styleHead} component="h1" variant="h5">
         Join Unbrew ☕️
-        </h2>
+        </Typography>
         <p> </p>
+
+        <form onSubmit={this.onSubmit}>
+
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} >
               <TextField
@@ -32,6 +113,8 @@ export default function SignUpPage() {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onChange={this.onChange}
+                value={firstName}
                 autoFocus
               />
             </Grid>
@@ -43,7 +126,9 @@ export default function SignUpPage() {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
+                onChange={this.onChange}
                 autoComplete="lname"
+                value={lastName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -54,7 +139,9 @@ export default function SignUpPage() {
                 id="email"
                 label="Email Address"
                 name="email"
+                onChange={this.onChange}
                 autoComplete="email"
+                value={email}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -66,17 +153,38 @@ export default function SignUpPage() {
                 label="Password"
                 type="password"
                 id="password"
+                onChange={this.onChange}
+                value={password}
               />
             </Grid>
           </Grid>
           <Button
-          style={stylePage.styleButton}
+            style={stylePage.styleButton}
             type="submit"
             variant="contained"
             fullWidth
             color="primary">
             Sign Up
           </Button>
-    </Container>
-  );
+          {error && <p>{error.message}</p>}
+
+          <Grid container justify="center">
+            <Grid item>
+              <Link to exact href={ROUTES.SIGN_IN} label="Sign In" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        
+        </form>
+      </Container>
+
+    );
+  }
 }
+
+const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+
+export default SignUpPage;
+
+export { SignUpForm };

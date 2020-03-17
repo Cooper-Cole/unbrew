@@ -52,32 +52,3 @@ firebase.auth().onAuthStateChanged(function(user) {
         //user is signed out
     }
 });
-
-// const firebaseAppAuth = firebaseApp.auth();
-
-// const providers = {
-//   googleProvider: new firebase.auth.GoogleAuthProvider(),
-// };
-
-// export default withFirebaseAuth({
-//   providers,
-//   firebaseAppAuth
-// })(App);
-
-// return (
-//       <div className="App">
-//         <header className="App-header">
-//           {
-//             user
-//               ? <p>Hello, {user.displayName}</p>
-//               : <p>Please sign in.</p>
-//           }
-
-//           {
-//             user
-//               ? <button onClick={signOut}>Sign Out</button>
-//               : <button onClick={signInWithGoogle}>Sign in with Google</button>
-//           }
-//         </header>
-//       </div>
-// );
