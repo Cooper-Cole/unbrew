@@ -63,8 +63,8 @@ export default function SignInPage() {
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link to exact href={ROUTES.SIGN_UP} label="Sign In" variant="body2">
-                Don't have an account? Sign up!
+              <Link to exact href={ROUTES.PASSWORD_FORGET} label="Forgot Password" variant="body3">
+                Click here to reset password.
               </Link>
             </Grid>
           </Grid>
