@@ -11,10 +11,12 @@ export default class MainForm extends React.Component {
           origin: "",
           roaster: "",
           brewMethod:"",
+          coffeeAmount:"",
           grindSize:"",
           time:"",
           water:"",
           temperature:"",
+          rating:"",
           steps:""
         };
       }
@@ -27,10 +29,12 @@ export default class MainForm extends React.Component {
         origin: this.state.origin,
         roaster: this.state.roaster,
         brewMethod: this.state.brewMethod,
+        coffeeAmount: this.state.coffeeAmount,
         grindSize: this.state.grindSize,
         time: this.state.time,
         water: this.state.water,
         temperature: this.state.temperature,
+        rating: this.state.rating,
         steps: this.state.steps
       };
 
@@ -130,6 +134,18 @@ export default class MainForm extends React.Component {
                 <MenuItem value="Espresso">Espresso</MenuItem>
         </Select>
              </Grid>
+             <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="coffeeAmount"
+                label="Amount of Coffee (ex: 17g)"
+                id="coffeeAmount"
+                onChange = {
+                  this.handleInputChange
+                }
+              />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <Select                 
               onChange = {this.handleChange}
@@ -177,6 +193,19 @@ export default class MainForm extends React.Component {
                 name="temperature"
                 label="Temperature"
                 id="temperature"
+                type="number"
+                onChange = {
+                  this.handleInputChange
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                name="rating"
+                label="Rate Your Coffee"
+                id="rating"
                 type="number"
                 onChange = {
                   this.handleInputChange
