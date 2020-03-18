@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+// import { withFirebase } from './Firebase';
+// import * as firebase from 'firebase';
+
 import { Container, Button, TextField, Grid } from '@material-ui/core';
 
 export default class AccountPage extends React.Component {

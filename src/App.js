@@ -17,7 +17,7 @@ import HomePage from './components/mainform.js';
 import AccountPage from './components/account';
 
 import CoffeePage from './components/coffee';
-import FirebasePage from './components/Firebase/firebase-page';
+// import FirebasePage from './components/Firebase/firebase-page';
 
 import * as ROUTES from './routes/routes';
 

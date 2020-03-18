@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container, Grid, TextField, Button } from '@material-ui/core';
-
+import { Typography, Container, Grid, TextField, Button } from '@material-ui/core';
 
 import { withFirebase } from './Firebase';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+// import * as firebase from 'firebase';
 
+import * as ROUTES from '../routes/routes';
 import axios from 'axios';
 
 const stylePage = {
@@ -50,8 +51,6 @@ class SignUpFormBase extends React.Component {
     };
 
     const {
-      firstName,
-      lastName,
       email,
       password
     } = this.state;
