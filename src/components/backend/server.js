@@ -31,17 +31,9 @@ app.use(bodyParser.urlencoded({
 }));
 // app.use(express.urlencoded({ extended: false }));
 
-const info_columns = 'user_email, coffee_name, origin, roaster, brew, grind, time, water_amount, temperature, steps';
+const info_columns = 'user_email, coffee_name, origin, roaster, brew, grind, time, water_amount, temperature, steps, coffee_amount, rating';
 
-// May need a function to connect + query to increase efficiency
-// function connect(sql, values) {
-//     pool.getConnection(function (err, connection) {
-//         connection.query(sql, [values], function(err, rows) {
-//             connection.release();
-//             res.send(JSON.stringify(rows));
-//         });
-//     })
-// }
+let authEmail;
 
 // Get data from MySQL, change SQL statement accordingly.
 function fetch(req, res, sql) {
@@ -53,9 +45,7 @@ function fetch(req, res, sql) {
             console.log(rows.length);
             res.send(JSON.stringify(rows));
         });
-        // const conn = await connection(dbConfig).catch(e => {});
-        // const results = await query(conn, 'SELECT * FROM user').catch(console.log);
-        // res.send(JSON.stringify(results));
+       
     });
 }
 
@@ -78,9 +68,10 @@ function add(req, res) {
 // Get call to specific URL. i.e. http://localhost:9000/account
 // Change the '/account' to corresponding page to prevent redundant data retrieving
 app.get('/account', function(req, res) { //change dir for corresponding page
-    fetch(req, res, "SELECT * FROM user");
-    // add(req.res);
-    console.log(firebase.auth().currentUser);
+    fetch(req, res, "SELECT * FROM user WHERE email='"+authEmail+"'");
+    // Changed query to show only authenticated user's email and password
+    
+    console.log(authEmail);
 });
 
 // Post call to specific URL. i.e. http://localhost:9000/account
@@ -92,7 +83,7 @@ app.post('/account', function(req, res) {
     let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
     let values = [
         // 1st column (email) is the primary key; it won't pass the values to DB unless the email exists.
-        ['junj@wit.edu', req.body.coffee, 'korea', '', '', '', '', '', '', '', '', ''], 
+        [authEmail, req.body.coffee, 'korea', '', '', '', '', '', '', '', '', ''], 
     ];
     pool.getConnection(function(err, connection) {
         connection.query(sql, [values], function(err, rows) {
@@ -104,17 +95,21 @@ app.post('/account', function(req, res) {
     })
 })
 
-app.get('/signin', function(req, res) {
+app.post('/signin', function(req, res) {
+    authEmail = req.body.info.email;
+
     pool.getConnection(function(err, connection) {
 
     })
+
+    console.log(authEmail, "SIGN-IN POST CALL");
 })
 
 app.post('/home', function(req, res) {
 
     let sql = "INSERT INTO info ("+info_columns+") VALUES ?";
     let values = [
-        ['junj@wit.edu',
+        [authEmail,
         req.body.info.coffeeName,
         req.body.info.origin,
         req.body.info.roaster,
@@ -123,9 +118,9 @@ app.post('/home', function(req, res) {
         req.body.info.time,
         req.body.info.water,
         req.body.info.temperature,
+        req.body.info.steps,
         req.body.info.coffeeAmount,
-        req.body.info.rating,
-        req.body.info.steps],
+        req.body.info.rating],
     ];
 
     pool.getConnection(function(err, connection) {
@@ -137,15 +132,19 @@ app.post('/home', function(req, res) {
         })
     })
 
-    // console.log(req.body.info.coffeeName);
+    console.log(authEmail);
 })
 
 app.post('/signup', function(req, res) {
-    let sql = "INSERT INTO user (email, password) VALUES ?";
+    let sql = "INSERT INTO user (email, password, firstName, lastName) VALUES ?";
     let values = [
         [req.body.info.email,
-        req.body.info.password],
+        req.body.info.password,
+        req.body.info.firstName,
+        req.body.info.lastName],
     ];
+
+    authEmail = req.body.info.email;
 
     pool.getConnection(function(err, connection) {
         connection.query(sql, [values], function(err, rows) {
@@ -156,6 +155,7 @@ app.post('/signup', function(req, res) {
         })
     })
 
+    console.log(authEmail, "THIS IS IN THE SIGNUP POST CALL");
     
 })
 

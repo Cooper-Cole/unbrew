@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tab, Tabs, Paper } from '@material-ui/core';
+import { Tab } from '@material-ui/core';
 
 import { withFirebase } from './Firebase';
 

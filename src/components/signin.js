@@ -44,7 +44,14 @@ class SignInFormBase extends React.Component {
   }
 
   onSubmit = event => {
+    const info = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
     const { email, password } = this.state;
+
+    //signin to Firebase Auth using existing account info
     this.props.firebase
     .doSignInWithEmailAndPassword(email, password)
     .then(() => {
@@ -53,6 +60,14 @@ class SignInFormBase extends React.Component {
     })
     .catch(error => {
       this.setState({ error });
+    });
+
+    //pass authenticated email to server
+    axios
+    .post('http://localhost:9000/signin', { info })
+    .then( () => console.log('User Info tossed to server.js'))
+    .catch(error => {
+      console.error(error);
     });
 
     event.preventDefault();

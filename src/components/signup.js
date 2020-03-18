@@ -3,7 +3,7 @@ import { Typography, Container, Grid, TextField, Button } from '@material-ui/cor
 
 import { withFirebase } from './Firebase';
 import { withRouter, Link } from 'react-router-dom';
-
+// import * as firebase from 'firebase';
 
 import * as ROUTES from '../routes/routes';
 import axios from 'axios';
@@ -51,8 +51,6 @@ class SignUpFormBase extends React.Component {
     };
 
     const {
-      firstName,
-      lastName,
       email,
       password
     } = this.state;

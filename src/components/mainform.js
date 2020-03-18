@@ -122,6 +122,8 @@ export default class MainForm extends React.Component {
               displayEmpty 
               variant="outlined"
               label="Brew Method"
+              name="brewMethod"
+              id="brewMethod"
               fullWidth
               >
                 <option hidden>Brew Method</option>
@@ -132,8 +134,8 @@ export default class MainForm extends React.Component {
                 <MenuItem value="Kalita Wave">Kalita Wave</MenuItem>
                 <MenuItem value="Drip">Drip</MenuItem>
                 <MenuItem value="Espresso">Espresso</MenuItem>
-        </Select>
-             </Grid>
+              </Select>
+            </Grid>
              <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
