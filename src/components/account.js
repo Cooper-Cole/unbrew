@@ -3,6 +3,9 @@ import axios from 'axios';
 // import { withFirebase } from './Firebase';
 // import * as firebase from 'firebase';
 
+import * as ROUTES from '../routes/routes';
+import Link from '@material-ui/core/Link';
+
 import { Container, Button, TextField, Grid } from '@material-ui/core';
 
 export default class AccountPage extends React.Component {
@@ -83,7 +86,7 @@ export default class AccountPage extends React.Component {
                       fullWidth
                       id="email"
                       label={this.state.accountInfo.map(info => 
-                            info.email
+                            info.firstName
                             )}
                       name="email"
                       autoComplete="email"
@@ -97,7 +100,7 @@ export default class AccountPage extends React.Component {
                       fullWidth
                       name="password"
                       label={this.state.accountInfo.map(info => 
-                        info.password
+                        info.lastName
                         )}
                       type="password"
                       id="password"
@@ -116,6 +119,14 @@ export default class AccountPage extends React.Component {
                 </Button>
                 <Grid container justify="center">
                 </Grid>
+
+                         <Grid container justify="center">
+                <Grid item>
+                  <Link to exact href={ROUTES.PASSWORD_FORGET} label="Forgot Password" variant="body3">
+                    Click here to reset password.
+                  </Link>
+                </Grid>
+              </Grid>
             </div>
           </Container>
         );
