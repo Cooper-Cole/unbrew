@@ -17,7 +17,8 @@ import HomePage from './components/mainform.js';
 import AccountPage from './components/account';
 
 import CoffeePage from './components/coffee';
-// import FirebasePage from './components/Firebase/firebase-page';
+
+import PasswordChangePage from './components/passwordChange';
 
 import * as ROUTES from './routes/routes';
 
@@ -60,6 +61,7 @@ class App extends React.Component{
           <Route path={ROUTES.ACCOUNT} component={AccountPage} />
           {/* <Route path={ROUTES.FIREBASE} component={FirebasePage} /> */}
           <Route path={ROUTES.COFFEE} component={CoffeePage} />
+          <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
         </div>
       </Router>
     );

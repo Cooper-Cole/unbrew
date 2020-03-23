@@ -126,6 +126,12 @@ export default class AccountPage extends React.Component {
                     Click here to reset password.
                   </Link>
                 </Grid>
+
+                <Grid item>
+                  <Link to exact href={ROUTES.PASSWORD_CHANGE} label="Change Password" variant="body3">
+                    Click here to change password.
+                  </Link>
+                </Grid>
               </Grid>
             </div>
           </Container>

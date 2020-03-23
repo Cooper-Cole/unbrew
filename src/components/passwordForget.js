@@ -16,14 +16,6 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const stylePage = {
-  styleHead : {
-      marginLeft: "30%",
-      fontFamily: "Verdana",
-      fontWeight: "bold",
-  }
-}
-
 class PasswordForgetFormBase extends React.Component {
   constructor(props) {
     super(props);
@@ -53,6 +45,14 @@ class PasswordForgetFormBase extends React.Component {
     const { email, error } = this.state;
 
     const isInvalid = email === '';
+
+    const stylePage = {
+      styleHead: {
+        marginLeft: "30%",
+        fontFamily: "Verdana",
+        fontWeight: "bold",
+      }
+    }
 
     return(
       <form onSubmit={this.onSubmit}>
