@@ -22,6 +22,7 @@ const NavigationAuth = () => (
       <Tab Link exact href={ROUTES.LANDING} label="Landing" />
       <Tab Link exact href={ROUTES.HOME} label="Home" />
       <Tab Link exact href={ROUTES.ACCOUNT} label="Account" />
+      <Tab Link exact href={ROUTES.COFFEE} label="Your Coffees" />
       <SignOutButton />
     </Tabs>
 
