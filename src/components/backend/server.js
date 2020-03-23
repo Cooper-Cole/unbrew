@@ -159,6 +159,11 @@ app.post('/signup', function(req, res) {
     
 })
 
+app.get('/coffee', function(req, res) {
+    fetch(req, res, "SELECT * FROM info WHERE user_email='"+authEmail+"'");
+        
+})
+
 //using port 9000
 //run "node server.js" in this dir first then npm start
 app.listen(9000, () => {

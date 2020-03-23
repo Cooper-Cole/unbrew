@@ -1,59 +1,67 @@
 import React from 'react';
 import { TableContainer, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 
-//testing to see if table can properly get data
-function dataSource(name, origin, roaster, brewMethod, coffeeAmount, grindSize, time, water, temperature, rating, steps) {
-  return {name, origin, roaster, brewMethod, coffeeAmount, grindSize, time, water, temperature, rating, steps};
-}
+import axios from 'axios';
 
-//defining rows for data sources
-let rows = [
-  dataSource('Good Coffee', 'Peru', 'Driftaway Roasters', 'Aeropress', '17g', 'fine', '2 minutes', '300g', '88C', '100', '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-  dataSource('Starbucks', 'El Salvador', 'Dunkin', 'French Press', '28g', 'coarse', '8 minutes', '600g', '108C', '56', 'stir')
-]
+export default class CoffeePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rows: [],
+    };
+  }
 
-// defining style elements
+  callAPI() {
+    fetch("http://localhost:9000/coffee")
+    .then(res => res.json())
+    .then(rows => this.setState({ rows }))
+    .catch(error => error);
+  }
 
-const styleTable = {
-  fontWeight: "bold"
-}
+  componentDidMount() {
+    this.callAPI();
+  }
 
-export default function CoffeePage() {
+  render() {
+    const styleTable = {
+      fontWeight: "bold"
+    }
 
-  return(
-    <TableContainer>
-      <TableHead>
-        <TableRow>
-          <TableCell style={styleTable}>Name</TableCell>
-          <TableCell style={styleTable}>Origin</TableCell>
-          <TableCell style={styleTable}>Roaster</TableCell>
-          <TableCell style={styleTable}>Method</TableCell>
-          <TableCell style={styleTable}>Coffee Amt.</TableCell>
-          <TableCell style={styleTable}>Grind</TableCell>
-          <TableCell style={styleTable}>Water Amt.</TableCell>
-          <TableCell style={styleTable}>Temp.</TableCell>
-          <TableCell style={styleTable}>Time</TableCell>
-          <TableCell style={styleTable}>Rating</TableCell>
-          <TableCell style={styleTable}>Steps</TableCell>
-        </TableRow>         
-      </TableHead> 
-      <TableBody>
-      {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell >{row.name}</TableCell>
+    return(
+      <TableContainer>
+        <TableHead>
+          <TableRow>
+            <TableCell style={styleTable}>Name</TableCell>
+            <TableCell style={styleTable}>Origin</TableCell>
+            <TableCell style={styleTable}>Roaster</TableCell>
+            <TableCell style={styleTable}>Method</TableCell>
+            <TableCell style={styleTable}>Coffee Amt.</TableCell>
+            <TableCell style={styleTable}>Grind</TableCell>
+            <TableCell style={styleTable}>Water Amt.</TableCell>
+            <TableCell style={styleTable}>Temp.</TableCell>
+            <TableCell style={styleTable}>Time</TableCell>
+            <TableCell style={styleTable}>Rating</TableCell>
+            <TableCell style={styleTable}>Steps</TableCell>
+          </TableRow>         
+        </TableHead>
+        <TableBody>
+          {this.state.rows.map(row =>(
+            <TableRow key={row.coffee_name}>
+              <TableCell >{row.coffee_name}</TableCell>
               <TableCell >{row.origin}</TableCell>
               <TableCell >{row.roaster}</TableCell>
-              <TableCell >{row.brewMethod}</TableCell>
-              <TableCell >{row.coffeeAmount}</TableCell>
-              <TableCell >{row.grindSize}</TableCell>
-              <TableCell >{row.water}</TableCell>
+              <TableCell >{row.brew}</TableCell>
+              <TableCell >{row.coffee_amount}</TableCell>
+              <TableCell >{row.grind}</TableCell>
+              <TableCell >{row.water_amount}</TableCell>
               <TableCell >{row.temperature}</TableCell>
               <TableCell >{row.time}</TableCell>
               <TableCell >{row.rating}</TableCell>
               <TableCell >{row.steps}</TableCell>
             </TableRow>
           ))}
-      </TableBody>
-    </TableContainer>
-  );
+        </TableBody> 
+      </TableContainer>
+    )
+  }
 }
