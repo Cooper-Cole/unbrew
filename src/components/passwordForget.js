@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TextField, Grid, Container } from '@material-ui/core';
+import { Button, TextField} from '@material-ui/core';
 
 import { withFirebase } from './Firebase';
 import * as ROUTES from '../routes/routes';
