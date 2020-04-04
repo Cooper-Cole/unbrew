@@ -7,7 +7,7 @@ import axios from 'axios';
 
 /* Sign in form was created in reference to 
 https://github.com/mui-org/material-ui tutorial.
-More info mentioned in final documentation */
+More info mentioned in final documentation! */
 
 const stylePage = {
   styleHead : {
